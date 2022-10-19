@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-addcar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddcarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private myapi:ApiService) { }
   name=""
   brand=""
   colour=""
@@ -20,6 +21,17 @@ export class AddcarComponent implements OnInit {
       "colour":this.colour,
       "price":this.price
     }
+    console.log(data)
+    this.myapi.addCar(data).subscribe(
+      (response)=>{
+        console.log("test")
+      }
+    )
+    alert("successfully added")
+    this.name=""
+    this.brand=""
+    this.colour=""
+    this.price=""
   }
 
   ngOnInit(): void {
